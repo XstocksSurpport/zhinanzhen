@@ -243,6 +243,18 @@ body::after {
   box-shadow: var(--slot) var(--slot) 0 var(--c7);
 }
 
+.wall-badge--gift {
+  cursor: pointer;
+  font-size: 11px;
+  padding: 9px 12px;
+  border: var(--slot) solid var(--c7);
+  pointer-events: auto;
+}
+
+.wall-intro--frame .wall-badge--gift {
+  pointer-events: auto;
+}
+
 .wall-hint {
   margin: 12px 0 0;
   font-size: 14px;
@@ -390,6 +402,175 @@ body::after {
   line-height: 1.55;
   color: var(--c7);
   text-shadow: 1px 1px 0 var(--c0);
+}
+
+/* —— 领取今日鲜花弹窗（仅站内，高于音乐播放器） —— */
+.flower-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 96;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: max(12px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right))
+    max(12px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+}
+
+.flower-modal.is-hidden {
+  display: none !important;
+}
+
+.flower-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(42, 24, 34, 0.55);
+}
+
+.flower-modal__panel {
+  position: relative;
+  width: min(100%, 340px);
+  max-height: min(88dvh, 620px);
+  overflow: auto;
+  padding: 44px 14px 16px;
+  background: linear-gradient(180deg, #fffefb, #fff0f7);
+  border: var(--slot) solid var(--c6);
+  box-shadow: var(--slot) var(--slot) 0 var(--c7), 0 12px 40px rgba(74, 44, 61, 0.2);
+  -webkit-overflow-scrolling: touch;
+}
+
+html.pixel-root .flower-modal__panel {
+  border-radius: 12px !important;
+}
+
+.flower-modal__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  padding: 6px 10px;
+  font-family: var(--font);
+  font-size: 13px;
+  cursor: pointer;
+  color: var(--c7);
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid var(--c4);
+  box-shadow: 2px 2px 0 rgba(232, 90, 156, 0.25);
+}
+
+.flower-modal__close:active {
+  transform: translate(1px, 1px);
+}
+
+.flower-modal__title {
+  margin: 0 0 10px;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--c9);
+}
+
+.flower-modal__img-wrap {
+  margin: 0 auto 12px;
+  max-height: 48vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0a0a0a;
+  border: 2px solid var(--c4);
+}
+
+.flower-modal__img {
+  display: block;
+  max-width: 100%;
+  max-height: 48vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.flower-modal__err {
+  margin: 0 0 10px;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  color: #c62828;
+}
+
+.flower-modal__err.is-hidden {
+  display: none;
+}
+
+.flower-modal__hint {
+  margin: 0 0 10px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--c8);
+  text-align: center;
+}
+
+.flower-modal__code {
+  margin: 0 0 14px;
+  padding: 12px 10px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: center;
+  color: var(--c6);
+  background: rgba(255, 200, 228, 0.45);
+  border: 2px dashed var(--c6);
+}
+
+.flower-modal__actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.flower-btn {
+  flex: 1 1 120px;
+  min-height: 44px;
+  padding: 10px 12px;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: var(--slot) solid transparent;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.15);
+}
+
+.flower-btn__icon {
+  margin-right: 4px;
+  font-weight: 800;
+}
+
+.flower-btn--like {
+  background: linear-gradient(180deg, #43a047, #2e7d32);
+  color: #fff;
+  border-color: #1b5e20;
+}
+
+.flower-btn--dislike {
+  background: linear-gradient(180deg, #ef5350, #c62828);
+  color: #fff;
+  border-color: #8b0000;
+}
+
+.flower-btn--ok {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  background: linear-gradient(180deg, var(--c5), var(--c6));
+  color: #fff;
+  border-color: var(--c7);
+}
+
+.flower-modal__step.is-hidden {
+  display: none !important;
+}
+
+body.flower-modal-open {
+  overflow: hidden;
 }
 
 /* —— 右上角迷你黑胶播放器（参考常见黑胶+唱臂+底栏 UI；在密码层之上、告白信之下） —— */

@@ -28,7 +28,7 @@
         <div class="heart-frame-wrap">
           <img class="heart-frame-img" src="images/heart-hero.png" alt="" decoding="async" />
           <div class="wall-intro wall-intro--frame">
-            <span class="wall-badge">52 格回忆</span>
+            <button type="button" class="wall-badge wall-badge--gift" id="btnFlowerGift">领取今日鲜花</button>
           </div>
           <div class="heart-grid" id="heartGrid"></div>
         </div>
@@ -36,8 +36,55 @@
     </main>
 
     <footer class="site-footer">
-      <p>给小田滴滴 · 一直在你这边</p>
+      <p>给小田滴滴 · 一直在你身边</p>
     </footer>
+
+    <div class="flower-modal is-hidden" id="flowerModal" role="dialog" aria-modal="true" aria-labelledby="flowerModalTitle">
+      <div class="flower-modal__backdrop" id="flowerModalBackdrop"></div>
+      <div class="flower-modal__panel">
+        <button type="button" class="flower-modal__close" id="flowerModalBack" aria-label="返回">返回</button>
+        <div class="flower-modal__step" id="flowerModalStepPick">
+          <h2 class="flower-modal__title" id="flowerModalTitle">今日鲜花</h2>
+          <div class="flower-modal__img-wrap">
+            <img class="flower-modal__img" src="images/today-flower.png" alt="今日鲜花" decoding="async" />
+          </div>
+          <p class="flower-modal__err is-hidden" id="flowerModalErr" role="alert"></p>
+          <div class="flower-modal__actions">
+            <button type="button" class="flower-btn flower-btn--like" id="flowerBtnLike"><span class="flower-btn__icon" aria-hidden="true">✓</span> 喜欢</button>
+            <button type="button" class="flower-btn flower-btn--dislike" id="flowerBtnDislike"><span class="flower-btn__icon" aria-hidden="true">✗</span> 不喜欢</button>
+          </div>
+        </div>
+        <div class="flower-modal__step is-hidden" id="flowerModalStepAlipay">
+          <h2 class="flower-modal__title">支付宝口令红包</h2>
+          <p class="flower-modal__hint">打开支付宝 → 口令红包 → 输入下方口令即可领取</p>
+          <p class="flower-modal__code" id="flowerRedCode">tzh5201314zz</p>
+          <button type="button" class="flower-btn flower-btn--ok" id="flowerBtnAlipayOk">知道了</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 音乐仅在通过密码、siteBody 显示后出现；mp3 放 audio/bgm.mp3 -->
+    <div class="vinyl-player" id="phonographWrap">
+      <div class="vinyl-player__deck">
+        <button type="button" class="vinyl-player__disc-btn" id="phonographBtn" aria-label="点击暂停或继续播放" aria-pressed="false">
+          <span class="vinyl-player__disc" aria-hidden="true">
+            <span class="vinyl-player__disc-shine"></span>
+            <span class="vinyl-player__disc-label">♪</span>
+          </span>
+        </button>
+        <div class="vinyl-player__arm" aria-hidden="true">
+          <span class="vinyl-player__arm-pivot"></span>
+          <span class="vinyl-player__arm-rod"></span>
+          <span class="vinyl-player__arm-head"></span>
+        </div>
+      </div>
+      <div class="vinyl-player__transport">
+        <button type="button" class="vinyl-player__tbtn" id="bgmRew" aria-label="后退八秒">⟲</button>
+        <button type="button" class="vinyl-player__tbtn vinyl-player__tbtn--main" id="vinylPlayCenter" aria-label="播放或暂停">▶</button>
+        <button type="button" class="vinyl-player__tbtn" id="bgmFwd" aria-label="前进八秒">⟳</button>
+      </div>
+    </div>
+    <audio id="bgm" src="audio/bgm.mp3" loop playsinline preload="auto"></audio>
     </div>
 
     <div class="letter-overlay" id="letterOverlay" role="dialog" aria-modal="true" aria-labelledby="letterTitle">
@@ -104,29 +151,6 @@
         </form>
       </div>
     </div>
-
-    <!-- 背景音乐：mp3 放 audio/bgm.mp3；参考常见「黑胶+唱臂+底栏」播放器布局 -->
-    <div class="vinyl-player" id="phonographWrap">
-      <div class="vinyl-player__deck">
-        <button type="button" class="vinyl-player__disc-btn" id="phonographBtn" aria-label="点击暂停或继续播放" aria-pressed="false">
-          <span class="vinyl-player__disc" aria-hidden="true">
-            <span class="vinyl-player__disc-shine"></span>
-            <span class="vinyl-player__disc-label">♪</span>
-          </span>
-        </button>
-        <div class="vinyl-player__arm" aria-hidden="true">
-          <span class="vinyl-player__arm-pivot"></span>
-          <span class="vinyl-player__arm-rod"></span>
-          <span class="vinyl-player__arm-head"></span>
-        </div>
-      </div>
-      <div class="vinyl-player__transport">
-        <button type="button" class="vinyl-player__tbtn" id="bgmRew" aria-label="后退八秒">⟲</button>
-        <button type="button" class="vinyl-player__tbtn vinyl-player__tbtn--main" id="vinylPlayCenter" aria-label="播放或暂停">▶</button>
-        <button type="button" class="vinyl-player__tbtn" id="bgmFwd" aria-label="前进八秒">⟳</button>
-      </div>
-    </div>
-    <audio id="bgm" src="audio/bgm.mp3" loop playsinline preload="auto"></audio>
 
     <script src="photo-manifest.js"></script>
     <script src="script.js"></script>

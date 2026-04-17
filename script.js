@@ -45,11 +45,22 @@
     if (pp) pp.textContent = on ? "\u23f8" : "\u25b6";
   }
 
-  /** 在用户点击等手势回调里调用，尽量满足浏览器自动播放策略 */
-  function tryPlayBgmInGesture() {
+  var BGM_VOLUME = 0.7;
+
+  /** 已通过密码进入站内后调用：默认音量 70%，循环由 audio loop 负责 */
+  function tryPlayBgmAfterUnlock() {
     var a = getBgm();
-    if (!a) return;
-    a.volume = 0.82;
+    if (!a || !gateOkThisLoad) return;
+    a.volume = BGM_VOLUME;
+    a.loop = true;
+    a.play().then(syncPhonoUi).catch(syncPhonoUi);
+  }
+
+  /** 站内用户手动继续播放 */
+  function tryPlayBgmManual() {
+    var a = getBgm();
+    if (!a || !gateOkThisLoad) return;
+    a.volume = BGM_VOLUME;
     a.play().then(syncPhonoUi).catch(syncPhonoUi);
   }
 
@@ -63,6 +74,8 @@
     if (BGM_SRC) {
       a.src = BGM_SRC;
     }
+    a.volume = BGM_VOLUME;
+    a.loop = true;
     a.addEventListener("play", syncPhonoUi);
     a.addEventListener("pause", syncPhonoUi);
     a.addEventListener("ended", syncPhonoUi);
@@ -73,7 +86,7 @@
         ev.stopPropagation();
       }
       if (a.paused) {
-        tryPlayBgmInGesture();
+        tryPlayBgmManual();
       } else {
         a.pause();
         syncPhonoUi();
@@ -242,8 +255,8 @@
         gateOkThisLoad = true;
         unlockSiteBody();
         hideGate();
-        tryPlayBgmInGesture();
         requestAnimationFrame(function () {
+          tryPlayBgmAfterUnlock();
           renderHeartGrid();
         });
         return;
@@ -264,7 +277,6 @@
 
     function dismissLetter() {
       overlay.classList.add("is-hidden");
-      tryPlayBgmInGesture();
       if (gateOkThisLoad) {
         unlockSiteBody();
         hideGate();
@@ -282,11 +294,73 @@
     });
   }
 
+  function setupFlowerGift() {
+    var modal = document.getElementById("flowerModal");
+    var openBtn = document.getElementById("btnFlowerGift");
+    var back = document.getElementById("flowerModalBack");
+    var backdrop = document.getElementById("flowerModalBackdrop");
+    var stepPick = document.getElementById("flowerModalStepPick");
+    var stepAli = document.getElementById("flowerModalStepAlipay");
+    var err = document.getElementById("flowerModalErr");
+    var like = document.getElementById("flowerBtnLike");
+    var dislike = document.getElementById("flowerBtnDislike");
+    var ok = document.getElementById("flowerBtnAlipayOk");
+    if (!modal || !openBtn || !stepPick || !stepAli || !err) return;
+
+    function resetFlowerModal() {
+      stepPick.classList.remove("is-hidden");
+      stepAli.classList.add("is-hidden");
+      err.classList.add("is-hidden");
+      err.textContent = "";
+    }
+
+    function openFlowerModal() {
+      if (!gateOkThisLoad) return;
+      resetFlowerModal();
+      modal.classList.remove("is-hidden");
+      document.body.classList.add("flower-modal-open");
+    }
+
+    function closeFlowerModal() {
+      modal.classList.add("is-hidden");
+      document.body.classList.remove("flower-modal-open");
+      resetFlowerModal();
+    }
+
+    openBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      openFlowerModal();
+    });
+
+    if (back) back.addEventListener("click", closeFlowerModal);
+    if (backdrop) backdrop.addEventListener("click", closeFlowerModal);
+
+    if (dislike) {
+      dislike.addEventListener("click", function () {
+        err.textContent = "错误，请重新选择";
+        err.classList.remove("is-hidden");
+      });
+    }
+
+    if (like) {
+      like.addEventListener("click", function () {
+        err.classList.add("is-hidden");
+        err.textContent = "";
+        stepPick.classList.add("is-hidden");
+        stepAli.classList.remove("is-hidden");
+      });
+    }
+
+    if (ok) ok.addEventListener("click", closeFlowerModal);
+  }
+
   lockSiteBody();
 
   setupGate();
   setupLetter();
   setupBgm();
+  setupFlowerGift();
 
   var resizeTimer;
   window.addEventListener(
