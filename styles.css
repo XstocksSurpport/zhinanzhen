@@ -755,6 +755,16 @@ html.pixel-root .vinyl-player__arm-head {
   border-top: 1px solid rgba(232, 90, 156, 0.15);
 }
 
+.vinyl-player__hint {
+  margin: 6px 0 0;
+  padding: 0 2px;
+  font-size: 10px;
+  line-height: 1.35;
+  text-align: center;
+  color: var(--c7);
+  opacity: 0.88;
+}
+
 .vinyl-player__tbtn {
   width: 28px;
   height: 28px;
