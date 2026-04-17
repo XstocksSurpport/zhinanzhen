@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="pixel-root">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#ffd6e8" />
+    <title>周小狗 × 田小浍 · 我们的小宇宙</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-hearts" aria-hidden="true"></div>
+
+    <div id="siteBody" class="site-body site-body--locked" aria-hidden="true">
+    <header class="site-header">
+      <p class="pixel-tag">LOVE STORY</p>
+      <h1 class="site-title">周小狗 <span class="heart-pixel">♥</span> 田小浍</h1>
+      <p class="site-sub">像素小站 · 稳稳的浪漫</p>
+    </header>
+
+    <main class="main">
+      <section class="wall-section" aria-label="爱心相册墙">
+        <div class="heart-frame-wrap">
+          <img class="heart-frame-img" src="images/heart-hero.png" alt="" decoding="async" />
+          <div class="wall-intro wall-intro--frame">
+            <span class="wall-badge">52 格回忆</span>
+            <p class="wall-hint">照片稍后慢慢填满，先把心意摆成一颗爱心给你看。</p>
+          </div>
+          <div class="heart-grid" id="heartGrid"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>给小田滴滴 · 一直在你这边</p>
+    </footer>
+    </div>
+
+    <div class="letter-overlay" id="letterOverlay" role="dialog" aria-modal="true" aria-labelledby="letterTitle">
+      <div class="letter-panel">
+        <div class="letter-envelope-top"></div>
+        <button type="button" class="letter-close pixel-btn" id="letterClose" aria-label="收起告白信">收下</button>
+        <div class="letter-scroll">
+          <p class="letter-kicker" id="letterTitle">小田滴滴</p>
+          <p class="letter-to">致 田小浍宝宝</p>
+          <div class="letter-body">
+            <p>
+              田小浍宝宝，你好，当你看到这封信时，我还在（qwq)，今天是我们在一起的第608天、20个月整。日子一页一页翻过，像风吹动的书页，没有声响，却留下痕迹。等我停下来回头看，才发现我们已经一起走了很远很远，远到连平凡的每一天，都带着你的影子。难得的是初见时手捧鲜花跌跌撞撞奔向我的那个小女孩，今天还是这么可爱、活泼动人。
+            </p>
+            <p>
+              你总说，怪时间带走了我们初见时的悸动，独留下彼此之间熟悉的安稳。但是我想那应该不是时间的错，而是我习惯了你在身边时的笃定。明白是我太过沉溺于这份静好，以至于忽略了爱情本身也需要浪漫的点缀。也需要偶尔的浪漫和心动来提醒彼此的存在。其实，我一直想对你说，那种“熟悉的安稳”并不是激情的终点，而是我们共同筑起的堡垒。只是我忘了，堡垒里也需要有花开，有烛火，有偶尔响起的奏鸣曲。
+            </p>
+            <p>我不想让时间磨平我们的棱角，更不想让习惯掩盖了那些本该对你表达的爱意。</p>
+            <p>
+              如果说初见时的悸动是夏日突如其来的暴雨，那么现在的喜欢，就是冬日里静静燃烧的壁炉。它不吵闹，但只要你靠近，永远都是暖的。我开始反思，是不是我太理所当然地享受着你的陪伴，却忘了你偶尔也想回到那个被鲜花和惊喜簇拥的瞬间。
+            </p>
+            <p>所以，接下来的日子里：</p>
+            <p>
+              <strong>我会学着重新“笨拙”起来。</strong>
+              像当初那样，去观察你细微的情绪，去准备那些看似“无用”却能让你心跳加速的小惊喜。
+            </p>
+            <p>
+              <strong>我会把爱说得更大声一点。</strong>
+              不再把“你在我心里很重要”当成默认的背景音，而是要在每一个清晨和黄昏，亲口告诉你。
+            </p>
+            <p>
+              <strong>我会陪你制造更多“第一次”。</strong>
+              即使我们已经如此熟悉，世界依然很大，我想和你去没去过的地方，看没看过的风景。
+            </p>
+            <p>
+              田小浍宝宝，谢谢你一直站在我身边。二十个月的朝夕相处，没有让我觉得乏味，反而让我更加确信——平凡生活里的英雄梦想，就是和你一起岁岁年年。
+            </p>
+            <p class="letter-highlight">初见时的鲜花还没枯萎，因为我打算在往后的每一天，都为你种下新的。</p>
+            <p class="letter-sign">我们不只有过去，更有无数个值得期待的以后。</p>
+          </div>
+        </div>
+        <div class="letter-envelope-bottom"></div>
+      </div>
+    </div>
+
+    <div class="gate-overlay is-hidden" id="gateOverlay" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+      <div class="gate-panel" id="gatePanel">
+        <p class="gate-title" id="gateTitle">访问密码</p>
+        <p class="gate-hint">信先收好～对一下暗号再进我们的小站</p>
+        <form class="gate-form" id="gateForm" autocomplete="off">
+          <label class="gate-label" for="gateInput">密码</label>
+          <input
+            class="gate-input"
+            id="gateInput"
+            type="password"
+            name="site_gate_password"
+            inputmode="text"
+            autocapitalize="off"
+            autocorrect="off"
+            spellcheck="false"
+            maxlength="64"
+          />
+          <p class="gate-error is-hidden" id="gateError" role="alert">不对哦，再试一次</p>
+          <button type="submit" class="gate-submit">进入网站</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="photo-manifest.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
