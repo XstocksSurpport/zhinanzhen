@@ -219,7 +219,7 @@ body::after {
   left: 0;
   right: 0;
   z-index: 2;
-  padding: 12px 10px 28px;
+  padding: 12px 10px 16px;
   margin: 0;
   pointer-events: none;
   background: linear-gradient(
@@ -392,116 +392,225 @@ body::after {
   text-shadow: 1px 1px 0 var(--c0);
 }
 
-/* —— 右上角留声机（在密码层之上、告白信之下） —— */
-.phonograph-wrap {
+/* —— 右上角迷你黑胶播放器（参考常见黑胶+唱臂+底栏 UI；在密码层之上、告白信之下） —— */
+/* 站点全局禁止圆角时，单独恢复播放器圆角 */
+html.pixel-root .vinyl-player {
+  border-radius: 14px !important;
+}
+
+html.pixel-root .vinyl-player__disc,
+html.pixel-root .vinyl-player__disc-label,
+html.pixel-root .vinyl-player__disc-shine,
+html.pixel-root .vinyl-player__arm-pivot,
+html.pixel-root .vinyl-player__tbtn--main {
+  border-radius: 50% !important;
+}
+
+html.pixel-root .vinyl-player__tbtn:not(.vinyl-player__tbtn--main) {
+  border-radius: 8px !important;
+}
+
+html.pixel-root .vinyl-player__arm-rod,
+html.pixel-root .vinyl-player__arm-head {
+  border-radius: 2px !important;
+}
+
+.vinyl-player {
   position: fixed;
   top: max(10px, env(safe-area-inset-top));
   right: max(10px, env(safe-area-inset-right));
   z-index: 88;
-  pointer-events: none;
-}
-
-.phonograph-wrap .phonograph {
+  width: 118px;
+  padding: 10px 10px 8px;
+  background: linear-gradient(165deg, #ffffff 0%, #faf7fb 55%, #f5eef6 100%);
+  border: 1px solid rgba(232, 90, 156, 0.35);
+  border-radius: 14px !important;
+  box-shadow:
+    0 8px 24px rgba(74, 44, 61, 0.18),
+    0 1px 0 rgba(255, 255, 255, 0.9) inset;
   pointer-events: auto;
 }
 
-.phonograph {
-  position: relative;
-  width: 56px;
-  height: 56px;
+.vinyl-player__deck {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.vinyl-player__disc-btn {
+  flex: 0 0 auto;
+  width: 58px;
+  height: 58px;
   padding: 0;
   border: none;
   cursor: pointer;
   background: transparent;
-  filter: drop-shadow(2px 3px 0 rgba(74, 44, 61, 0.2));
+  position: relative;
 }
 
-.phonograph:focus-visible {
+.vinyl-player__disc-btn:focus-visible {
   outline: 2px solid var(--c6);
-  outline-offset: 3px;
+  outline-offset: 2px;
+  border-radius: 12px !important;
 }
 
-.phono-platter {
-  position: absolute;
-  left: 4px;
-  bottom: 4px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 50% 50%, #2a2a2a 0%, #2a2a2a 28%, #1a1a1a 29%, #1a1a1a 32%, #252525 33%, #252525 36%, #141414 37%, #141414 100%);
+.vinyl-player__disc {
+  display: block;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto;
+  clip-path: circle(50% at 50% 50%);
+  border-radius: 50% !important;
+  background:
+    repeating-radial-gradient(circle at 50% 50%, transparent 0 2px, rgba(255, 255, 255, 0.04) 2px 3px),
+    radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.12) 0%, transparent 42%),
+    conic-gradient(from 0deg, #1a1a1a, #0d0d0d, #252525, #111, #1a1a1a);
   box-shadow:
-    inset 0 0 0 2px rgba(255, 255, 255, 0.12),
-    0 1px 0 rgba(255, 255, 255, 0.25);
+    inset 0 0 0 1px rgba(255, 255, 255, 0.15),
+    0 3px 10px rgba(0, 0, 0, 0.35);
   transform-origin: 50% 50%;
+  position: relative;
 }
 
-.phono-groove {
+.vinyl-player__disc-shine {
   position: absolute;
-  inset: 5px;
-  border-radius: 50%;
-  border: 1px dashed rgba(255, 255, 255, 0.08);
+  inset: 0;
+  border-radius: 50% !important;
+  background: linear-gradient(125deg, rgba(255, 255, 255, 0.22) 0%, transparent 38%, transparent 62%, rgba(255, 255, 255, 0.06) 100%);
   pointer-events: none;
 }
 
-.phono-label {
+.vinyl-player__disc-label {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: linear-gradient(145deg, var(--c4), var(--c6));
-  color: var(--c0);
-  font-size: 10px;
-  line-height: 16px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50% !important;
+  background: linear-gradient(145deg, #ffb8dc, var(--c6));
+  color: #fff;
+  font-size: 11px;
+  line-height: 20px;
   text-align: center;
   font-weight: 700;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
 }
 
-.phono-pivot {
+.vinyl-player__arm {
+  position: relative;
+  width: 44px;
+  height: 56px;
+  flex-shrink: 0;
+}
+
+.vinyl-player__arm-pivot {
   position: absolute;
-  right: 10px;
-  top: 10px;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: linear-gradient(145deg, #e8e8e8, #a8a8a8);
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+  right: 6px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50% !important;
+  background: linear-gradient(145deg, #f2f2f2, #b8b8b8);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
   z-index: 2;
 }
 
-.phono-arm {
+.vinyl-player__arm-rod {
   position: absolute;
-  right: 12px;
+  right: 10px;
   top: 14px;
-  width: 4px;
-  height: 30px;
-  background: linear-gradient(90deg, #c9a66a, #8b6914);
-  border-radius: 1px;
-  transform-origin: 50% 4px;
-  transform: rotate(22deg);
+  width: 3px;
+  height: 34px;
+  background: linear-gradient(90deg, #eaeaea, #c4c4c4);
+  transform-origin: 50% 0;
+  transform: rotate(18deg);
+  border-radius: 2px !important;
   z-index: 1;
-  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.25);
-  transition: transform 0.35s ease;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s ease;
 }
 
-.phonograph-wrap.is-playing .phono-platter {
-  animation: phono-spin 5.8s linear infinite;
+.vinyl-player__arm-head {
+  position: absolute;
+  right: 5px;
+  bottom: 10px;
+  width: 10px;
+  height: 6px;
+  background: #3a3a3a;
+  border-radius: 2px !important;
+  transform: rotate(18deg);
+  z-index: 2;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
-.phonograph-wrap.is-playing .phono-arm {
-  transform: rotate(8deg);
+.vinyl-player.is-playing .vinyl-player__disc {
+  animation: vinyl-spin 5.6s linear infinite;
 }
 
-@keyframes phono-spin {
-  from {
-    transform: rotate(0deg);
-  }
+.vinyl-player.is-playing .vinyl-player__arm-rod {
+  transform: rotate(10deg);
+}
+
+.vinyl-player.is-playing .vinyl-player__arm-head {
+  transform: rotate(10deg);
+}
+
+@keyframes vinyl-spin {
   to {
     transform: rotate(360deg);
   }
+}
+
+.vinyl-player__transport {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding-top: 2px;
+  border-top: 1px solid rgba(232, 90, 156, 0.15);
+}
+
+.vinyl-player__tbtn {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  color: var(--c8);
+  font-size: 15px;
+  line-height: 1;
+  border-radius: 8px !important;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.vinyl-player__tbtn:hover {
+  background: rgba(232, 90, 156, 0.12);
+  color: var(--c6);
+}
+
+.vinyl-player__tbtn--main {
+  width: 36px;
+  height: 36px;
+  font-size: 14px;
+  border-radius: 50% !important;
+  background: linear-gradient(145deg, var(--c5), var(--c6));
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(232, 90, 156, 0.45);
+}
+
+.vinyl-player__tbtn--main:hover {
+  background: linear-gradient(145deg, var(--c6), var(--c7));
+  color: #fff;
+}
+
+.vinyl-player__tbtn:focus-visible {
+  outline: 2px solid var(--c6);
+  outline-offset: 2px;
 }
 
 /* —— 告白信：无模糊，硬边面板 —— */

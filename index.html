@@ -20,7 +20,7 @@
     <header class="site-header">
       <p class="pixel-tag">LOVE STORY</p>
       <h1 class="site-title">周小狗 <span class="heart-pixel">♥</span> 田小浍</h1>
-      <p class="site-sub">像素小站 · 稳稳的浪漫</p>
+      <p class="site-sub">爱情小站，稳稳的浪漫</p>
     </header>
 
     <main class="main">
@@ -29,7 +29,6 @@
           <img class="heart-frame-img" src="images/heart-hero.png" alt="" decoding="async" />
           <div class="wall-intro wall-intro--frame">
             <span class="wall-badge">52 格回忆</span>
-            <p class="wall-hint">照片稍后慢慢填满，先把心意摆成一颗爱心给你看。</p>
           </div>
           <div class="heart-grid" id="heartGrid"></div>
         </div>
@@ -106,16 +105,26 @@
       </div>
     </div>
 
-    <!-- 背景音乐：请将《稳稳的幸福》转为 mp3 命名为 bgm.mp3 放入 audio/（百度视频页无法直接作 src） -->
-    <div class="phonograph-wrap" id="phonographWrap">
-      <button type="button" class="phonograph" id="phonographBtn" aria-label="背景音乐：点击暂停或继续" aria-pressed="false">
-        <span class="phono-platter" aria-hidden="true">
-          <span class="phono-groove"></span>
-          <span class="phono-label">♪</span>
-        </span>
-        <span class="phono-arm" aria-hidden="true"></span>
-        <span class="phono-pivot" aria-hidden="true"></span>
-      </button>
+    <!-- 背景音乐：mp3 放 audio/bgm.mp3；参考常见「黑胶+唱臂+底栏」播放器布局 -->
+    <div class="vinyl-player" id="phonographWrap">
+      <div class="vinyl-player__deck">
+        <button type="button" class="vinyl-player__disc-btn" id="phonographBtn" aria-label="点击暂停或继续播放" aria-pressed="false">
+          <span class="vinyl-player__disc" aria-hidden="true">
+            <span class="vinyl-player__disc-shine"></span>
+            <span class="vinyl-player__disc-label">♪</span>
+          </span>
+        </button>
+        <div class="vinyl-player__arm" aria-hidden="true">
+          <span class="vinyl-player__arm-pivot"></span>
+          <span class="vinyl-player__arm-rod"></span>
+          <span class="vinyl-player__arm-head"></span>
+        </div>
+      </div>
+      <div class="vinyl-player__transport">
+        <button type="button" class="vinyl-player__tbtn" id="bgmRew" aria-label="后退八秒">⟲</button>
+        <button type="button" class="vinyl-player__tbtn vinyl-player__tbtn--main" id="vinylPlayCenter" aria-label="播放或暂停">▶</button>
+        <button type="button" class="vinyl-player__tbtn" id="bgmFwd" aria-label="前进八秒">⟳</button>
+      </div>
     </div>
     <audio id="bgm" src="audio/bgm.mp3" loop playsinline preload="auto"></audio>
 

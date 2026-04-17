@@ -37,10 +37,12 @@
     var a = getBgm();
     var wrap = getPhonoWrap();
     var btn = document.getElementById("phonographBtn");
+    var pp = document.getElementById("vinylPlayCenter");
     if (!a || !wrap) return;
     var on = !a.paused;
     wrap.classList.toggle("is-playing", on);
     if (btn) btn.setAttribute("aria-pressed", on ? "true" : "false");
+    if (pp) pp.textContent = on ? "\u23f8" : "\u25b6";
   }
 
   /** 在用户点击等手势回调里调用，尽量满足浏览器自动播放策略 */
@@ -53,24 +55,46 @@
 
   function setupBgm() {
     var a = getBgm();
-    var btn = document.getElementById("phonographBtn");
-    if (!a || !btn) return;
+    var disc = document.getElementById("phonographBtn");
+    var pp = document.getElementById("vinylPlayCenter");
+    var rew = document.getElementById("bgmRew");
+    var fwd = document.getElementById("bgmFwd");
+    if (!a) return;
     if (BGM_SRC) {
       a.src = BGM_SRC;
     }
     a.addEventListener("play", syncPhonoUi);
     a.addEventListener("pause", syncPhonoUi);
     a.addEventListener("ended", syncPhonoUi);
-    btn.addEventListener("click", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
+
+    function toggleBgm(ev) {
+      if (ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+      }
       if (a.paused) {
         tryPlayBgmInGesture();
       } else {
         a.pause();
         syncPhonoUi();
       }
-    });
+    }
+
+    if (disc) disc.addEventListener("click", toggleBgm);
+    if (pp) pp.addEventListener("click", toggleBgm);
+
+    function seekBy(sec) {
+      return function (ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        if (!a.duration || isNaN(a.duration)) return;
+        a.currentTime = Math.max(0, Math.min(a.duration, a.currentTime + sec));
+      };
+    }
+    if (rew) rew.addEventListener("click", seekBy(-8));
+    if (fwd) fwd.addEventListener("click", seekBy(8));
+
+    syncPhonoUi();
   }
 
   function heartPoint(t) {
