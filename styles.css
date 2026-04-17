@@ -1149,7 +1149,7 @@ body.gate-active {
   border: 2px solid rgba(255, 255, 255, 0.92);
   opacity: 0;
   transform: scale(0.86) translateY(16px);
-  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1), transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.12s cubic-bezier(0.22, 1, 0.36, 1), transform 0.12s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity, transform;
 }
 

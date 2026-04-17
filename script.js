@@ -14,16 +14,15 @@
       '<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"><rect fill="#ffe8f3" width="128" height="128"/><path fill="#e85a9c" d="M64 96c-24-18-36-32-36-48 0-12 10-22 22-22 7 0 14 4 18 10 4-6 11-10 18-10 12 0 22 10 22 22 0 16-12 30-36 48z"/></svg>'
     );
 
-  /** 相对路径统一成绝对地址，避免子路径部署或解析差异 */
+  /**
+   * 相册路径：相对地址原样交给浏览器解析（与页面地址一致），避免错误的 new URL 拼成 /images/… 丢仓库子路径。
+   * 仅绝对地址 / data / blob 保持原样。
+   */
   function resolvePhotoUrl(rel) {
     if (!rel || typeof rel !== "string") return rel;
     var t = rel.trim();
     if (/^https?:\/\//i.test(t) || t.indexOf("data:") === 0 || t.indexOf("blob:") === 0) return t;
-    try {
-      return new URL(t, document.baseURI).href;
-    } catch (err) {
-      return t;
-    }
+    return t;
   }
 
   function bustPhotoUrl(url, n) {
@@ -36,12 +35,13 @@
    * 爱心格 / 浮层共用：优先原图，失败自动带参数重试，最后占位图保证不裂图。
    * onLoadEnd(img) 在任意一次成功解码后调用（含占位图）。
    */
-  function wireReliablePhoto(img, baseUrl, onLoadEnd) {
+  function wireReliablePhoto(img, baseUrl, onLoadEnd, opts) {
+    opts = opts || {};
     img._wireGen = (img._wireGen || 0) + 1;
     var wireGen = img._wireGen;
     var attempt = 0;
     img.loading = "eager";
-    img.decoding = "async";
+    img.decoding = opts.decoding || "async";
 
     function alive() {
       return img._wireGen === wireGen;
@@ -120,9 +120,9 @@
   ];
   var bgmTrackIndex = 0;
 
-  /** 随机浮层：进/出各约 0.4s + 中间约 3.2s ≈ 整段 4s */
-  var FLOAT_PHOTO_TRANS_MS = 400;
-  var FLOAT_PHOTO_HOLD_MS = 3200;
+  /** 随机浮层：整段约 1s（进 + 停 + 出 + 间隔） */
+  var FLOAT_PHOTO_TRANS_MS = 120;
+  var FLOAT_PHOTO_HOLD_MS = 520;
   var floatPhotoTimer = null;
   var floatPhotoRunning = false;
   var lastFloatPhotoUrl = "";
@@ -240,7 +240,7 @@
           if (!floatPhotoRunning || !gateOkThisLoad) return;
           img.classList.remove("float-photo-img--in", "float-photo-img--out");
           img.removeAttribute("src");
-          scheduleFloatPhotoStep(runFloatPhotoCycle, 180);
+          scheduleFloatPhotoStep(runFloatPhotoCycle, 140);
         }, FLOAT_PHOTO_TRANS_MS);
       }, FLOAT_PHOTO_TRANS_MS + FLOAT_PHOTO_HOLD_MS);
     });
@@ -254,7 +254,7 @@
     floatPhotoRunning = true;
     layer.classList.remove("is-hidden");
     layer.setAttribute("aria-hidden", "false");
-    scheduleFloatPhotoStep(runFloatPhotoCycle, 320);
+    scheduleFloatPhotoStep(runFloatPhotoCycle, 80);
   }
 
   function getBgm() {
@@ -293,13 +293,37 @@
     if (titleEl) titleEl.textContent = t.title;
   }
 
-  /** 已通过密码进入站内后调用：默认音量 70%，从第一首起顺序播放 */
+  /** 已通过密码进入站内后调用：须紧跟用户手势（提交密码）同步调用，否则浏览器会拦截自动播放。不再重复 load 第一首，避免打断 play。 */
   function tryPlayBgmAfterUnlock() {
     var a = getBgm();
     if (!a || !gateOkThisLoad) return;
     a.volume = BGM_VOLUME;
-    applyBgmTrack(0);
-    a.play().then(syncPhonoUi).catch(syncPhonoUi);
+    a.loop = false;
+    if (bgmTrackIndex !== 0) {
+      applyBgmTrack(0);
+    }
+
+    function kickPlay() {
+      var p = a.play();
+      if (p !== undefined && p.then) {
+        p.then(syncPhonoUi).catch(function () {
+          var once = function () {
+            a.removeEventListener("canplaythrough", once);
+            a.play().then(syncPhonoUi).catch(syncPhonoUi);
+          };
+          a.addEventListener("canplaythrough", once);
+          if (a.readyState >= 3) {
+            try {
+              once();
+            } catch (e) {}
+          }
+        });
+      } else {
+        syncPhonoUi();
+      }
+    }
+
+    kickPlay();
   }
 
   /** 站内用户手动继续播放 */
@@ -435,6 +459,11 @@
     var grid = document.getElementById("heartGrid");
     if (!grid) return;
 
+    PHOTO_BY_SLOT = buildPhotoBySlot();
+
+    var site = document.getElementById("siteBody");
+    if (site) void site.offsetWidth;
+
     var positions = buildHeartSlots(SLOT_COUNT);
     var iw = window.innerWidth || document.documentElement.clientWidth;
     var narrow = iw <= 540;
@@ -464,7 +493,7 @@
         var img = document.createElement("img");
         img.alt = "恋爱相册第 " + slotNum + " 张";
         cell.appendChild(img);
-        wireReliablePhoto(img, src, null);
+        wireReliablePhoto(img, src, null, { decoding: "sync" });
       } else {
         cell.setAttribute("role", "img");
         cell.setAttribute("aria-label", "第 " + slotNum + " 格相册位");
@@ -531,10 +560,14 @@
         gateOkThisLoad = true;
         unlockSiteBody();
         hideGate();
+        tryPlayBgmAfterUnlock();
         requestAnimationFrame(function () {
-          tryPlayBgmAfterUnlock();
-          renderHeartGrid();
-          startFloatPhotos();
+          requestAnimationFrame(function () {
+            var sb = document.getElementById("siteBody");
+            if (sb) void sb.offsetWidth;
+            renderHeartGrid();
+            startFloatPhotos();
+          });
         });
         return;
       }
