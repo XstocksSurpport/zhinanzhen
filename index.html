@@ -1,167 +1,311 @@
-<!DOCTYPE html>
-<html lang="zh-CN" class="pixel-root">
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#ffd6e8" />
-    <title>周小狗 × 田小浍 · 我们的小宇宙</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>指南针 · $ZNZ 官方认购</title>
+    <meta name="description" content="指南针 $ZNZ：BSC 官方预售、持币权益与代币分配说明。" />
+    <link rel="icon" type="image/png" href="assets/logo.png" sizes="any" />
+    <link rel="apple-touch-icon" href="assets/logo.png" />
+    <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
-    <div class="bg-hearts" aria-hidden="true"></div>
-
-    <div id="siteBody" class="site-body site-body--locked" aria-hidden="true">
     <header class="site-header">
-      <p class="pixel-tag">LOVE STORY</p>
-      <h1 class="site-title">周小狗 <span class="heart-pixel">♥</span> 田小浍</h1>
-      <p class="site-sub">爱情小站，稳稳的浪漫</p>
+      <div class="wrap header-inner">
+        <div class="brand">
+          <a class="brand-logo" href="#home" title="指南针 ZNZ" id="brandHome">
+            <img
+              src="assets/logo.png"
+              width="56"
+              height="56"
+              alt="指南针"
+              decoding="async"
+            />
+          </a>
+          <div class="brand-text">
+            <h1 class="brand-heading">指南针 · $ZNZ</h1>
+            <span>社区币 粉丝代币</span>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button type="button" id="connectBtn" class="btn btn-primary">连接钱包</button>
+          <div id="walletRow" class="header-actions hidden">
+            <span id="walletAddr" class="address-pill"></span>
+            <button type="button" id="disconnectBtn" class="btn btn-ghost">断开</button>
+          </div>
+        </div>
+      </div>
+      <nav class="site-nav wrap" aria-label="主导航">
+        <a href="#home" data-panel="home">首页</a>
+        <a href="#presale" data-panel="presale">认购中心</a>
+        <a href="#dividend" data-panel="dividend">分红领取</a>
+        <a href="#tokenomics" data-panel="tokenomics">代币分配</a>
+        <a href="#points" data-panel="points">积分排行</a>
+      </nav>
     </header>
 
-    <main class="main">
-      <section class="wall-section" aria-label="爱心相册墙">
-        <div class="heart-frame-wrap">
-          <img class="heart-frame-img" src="images/heart-hero.png" alt="" decoding="async" />
-          <div class="wall-intro wall-intro--frame">
-            <button type="button" class="wall-badge wall-badge--gift" id="btnFlowerGift">领取今日鲜花</button>
+    <main class="wrap">
+      <div id="panel-home" class="page-panel active" data-panel-id="home">
+        <section class="hero">
+          <div class="hero-badge">指南针 · X @bishengkegs</div>
+          <h2>指南针 $ZNZ<br />个人 IP 链上权益代币</h2>
+          <p class="hero-lead">
+            指南针（<a href="https://x.com/bishengkegs" target="_blank" rel="noopener">@bishengkegs</a>）长期深耕中文加密内容。$ZNZ
+            将创作者影响力、社群共识与链上分配机制合而为一——既是身份符号，也是共享增长红利的载体。
+          </p>
+          <p class="hero-lead hero-lead-tight">
+            <strong>本轮预售截止时间（北京时间）：</strong><span class="hero-date" id="homePresaleEnd">2026/04/30 00:00:00</span>。详细支付流程见「认购中心」。
+          </p>
+          <div class="hero-stats">
+            <div class="stat-card">
+              <strong>$ZNZ</strong>
+              <span>BSC 生态定位代币</span>
+            </div>
+            <div class="stat-card">
+              <strong>1 亿枚</strong>
+              <span>固定总量</span>
+            </div>
+            <div class="stat-card">
+              <strong>预售不锁仓</strong>
+              <span>本档认筹份额不设额外锁定期</span>
+            </div>
           </div>
-          <div class="heart-grid" id="heartGrid"></div>
-        </div>
-      </section>
+        </section>
+
+        <section class="home-ip">
+          <h3 class="section-title">关于 $ZNZ</h3>
+          <div class="card ip-grid">
+            <div class="ip-item">
+              <h4>这是什么币</h4>
+              <p>
+                <strong>$ZNZ（指南针）</strong>是锚定中文币圈博主 IP「指南针」与 X 矩阵的<strong>社群权益型代币</strong>，部署于
+                BNB Chain（BSC）。在总量 1 亿枚的框架下，它承载粉丝身份的链上凭证；并与<strong>指南针个人全部币圈业务收入（一级、二级、撸毛、投研等）的股东分红</strong>及<strong>推特商业化向股东池的全额注入</strong>挂钩——把「关注」升级为可执行、可审计的股东级权益。
+              </p>
+            </div>
+            <div class="ip-item">
+              <h4>持有 $ZNZ 能做什么</h4>
+              <p>
+                持币者按份额享有<strong>指南针个人在一级市场、二级市场、撸毛、投研及与此相关的一切币圈业务收入的 80%</strong>，作为股东分红发放；并享有<strong>推特流量与广告收入 100% 注入股东池</strong>后的按份分配。另含活动优先权、快照与积分权重等配套权益（随产品迭代在站内与 X 同步更新）。
+              </p>
+            </div>
+            <div class="ip-item">
+              <h4>为何参与预售</h4>
+              <p>
+                在内容同质化与信任稀缺的周期里，指南针选择把<strong>长期追随者与创作者绑在同一张资产负债表上</strong>：早鸟预售锁定更具竞争力的成本结构，与后续上所、做市及生态释放形成<strong>结构性利差</strong>；同时前置接入个人 IP 的全链路变现，共享品牌放大带来的复利。
+              </p>
+            </div>
+            <div class="ip-item">
+              <h4>参与预售的核心收益</h4>
+              <p>
+                除上述收益分配外，本档预售<strong>不对散户增设锁仓</strong>，上所后流通由市场定价；认筹累计<strong>分红积分</strong>（10 USDT 计 1 分）用于后续分红权重对齐。品牌形象与叙事将持续在推特与线下场景曝光，为持币者导入协同资源与注意力红利。
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="home-perks">
+          <h3 class="section-title">持币权益（摘要）</h3>
+          <div class="card perks-card">
+            <ul class="perks-list">
+              <li>
+                <span class="perks-label">个人币圈收入</span>
+                <span class="perks-body"
+                  ><strong>指南针个人</strong>在一级市场、二级市场、撸毛、投研以及与此相关的<strong>全部币圈业务收入</strong>，其中 <strong class="perks-num">80%</strong> 按持币比例向股东发放。</span>
+              </li>
+              <li>
+                <span class="perks-label">推特商业化</span>
+                <span class="perks-body"
+                  ><strong>流量收入</strong>与<strong>广告收入</strong>合计 <strong class="perks-num">100%</strong> 进入股东池，向持币者分配。</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </div>
+
+      <div id="panel-presale" class="page-panel" data-panel-id="presale">
+        <section>
+          <h3 class="section-title">认购中心</h3>
+
+          <div class="card" style="margin-bottom: 20px">
+            <p class="presale-deadline">
+              截止时间（北京时间）：<strong id="presaleEndLabel">2026/04/30 00:00:00</strong>
+            </p>
+            <div class="progress-block" style="margin-top: 16px">
+              <div class="progress-meta">
+                <span>本轮认购进度</span>
+                <span id="progressPercentLabel">—</span>
+              </div>
+              <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <div id="progressFill" class="progress-fill" style="width: 0%"></div>
+              </div>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid var(--line); margin: 24px 0 20px" />
+
+            <p class="muted" id="configWarn" style="margin: 0 0 12px; color: var(--fire-deep)"></p>
+            <div class="stake-form">
+              <label for="usdtAmount" class="label-presale-amount">预售金额</label>
+              <input
+                id="usdtAmount"
+                class="input-presale-amount"
+                type="text"
+                inputmode="decimal"
+                placeholder="请输入 USDT 金额"
+                autocomplete="off"
+              />
+              <div class="points-row">
+                <span>预计获得 ZNZ</span>
+                <strong><span id="znzOut">0</span> ZNZ</strong>
+              </div>
+              <div
+                class="points-row"
+                style="background: linear-gradient(135deg, #fffbf0 0%, #fff8e8 100%); border: 1px solid rgba(184, 134, 11, 0.22)"
+              >
+                <span>分红积分（10 USDT = 1 分）</span>
+                <strong><span id="divPointsOut">0</span> 分</strong>
+              </div>
+              <p class="muted" style="margin: 8px 0 0">
+                认购单价：<span class="mono" id="priceLabel">—</span> USDT / 1 ZNZ；单次认缴
+                <span id="minLabel">—</span>～<span id="maxLabel">—</span> USDT。
+              </p>
+              <div class="stake-actions">
+                <button type="button" id="buyBtn" class="btn btn-primary">唤起钱包支付</button>
+              </div>
+              <p class="muted" style="margin-top: 14px">
+                当前地址：<span class="mono" id="walletEcho">—</span> · BSC USDT 余额参考：
+                <strong id="usdtBal">—</strong>
+              </p>
+            </div>
+          </div>
+
+          <div class="card" style="margin-bottom: 20px">
+            <h4 class="card-subtitle">预售教程</h4>
+            <ol class="tutorial-steps">
+              <li>安装钱包（如 MetaMask），点击右上<strong>「连接钱包」</strong>。</li>
+              <li>将网络切换至 <strong>BSC 主网（Chain ID 56）</strong>，钱包内准备 <strong>BSC USDT（BEP20）</strong>。</li>
+              <li>
+                在本页上方金额区填写 <strong>USDT</strong>（须在限额内），核对 <strong>ZNZ</strong> 与分红积分（<strong>10 USDT = 1 分</strong>），点击<strong>「唤起钱包支付」</strong>，确认支付即可。
+              </li>
+            </ol>
+          </div>
+        </section>
+      </div>
+
+      <div id="panel-dividend" class="page-panel" data-panel-id="dividend">
+        <section>
+          <h3 class="section-title">分红领取</h3>
+          <div class="disabled-banner">
+            <strong>暂未开放</strong>
+          </div>
+        </section>
+      </div>
+
+      <div id="panel-tokenomics" class="page-panel" data-panel-id="tokenomics">
+        <section class="tokenomics-block">
+          <h3 class="section-title">代币分配 · $ZNZ</h3>
+          <div class="card">
+            <table class="tok-table">
+              <tbody>
+                <tr>
+                  <th>名称</th>
+                  <td>指南针（Zhi Nan Zhen）</td>
+                </tr>
+                <tr>
+                  <th>符号</th>
+                  <td>ZNZ</td>
+                </tr>
+                <tr>
+                  <th>总量</th>
+                  <td>100,000,000（1 亿枚）</td>
+                </tr>
+                <tr>
+                  <th>参考市值</th>
+                  <td>全流通口径约 20 万美元（随上所及流动性变化）</td>
+                </tr>
+                <tr>
+                  <th>预售池</th>
+                  <td>12%，BSC USDT 认缴</td>
+                </tr>
+                <tr>
+                  <th>流动性</th>
+                  <td>22%，用于上所及做市</td>
+                </tr>
+                <tr>
+                  <th>生态与活动</th>
+                  <td>20%，社区运营与增长</td>
+                </tr>
+                <tr>
+                  <th>国库</th>
+                  <td>18%，合规、技术与长期支出</td>
+                </tr>
+                <tr>
+                  <th>团队</th>
+                  <td>10%，18 个月线性释放，与预售池独立核算</td>
+                </tr>
+                <tr>
+                  <th>战略合作</th>
+                  <td>8%，渠道与生态共建</td>
+                </tr>
+                <tr>
+                  <th>空投</th>
+                  <td>10%，持币与任务激励</td>
+                </tr>
+                <tr>
+                  <th>预售锁仓</th>
+                  <td><strong>本档预售不对散户增设锁仓</strong>，上所后流通由市场决定</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <div id="panel-points" class="page-panel" data-panel-id="points">
+        <section class="points-rank-block">
+          <h3 class="section-title">积分排行</h3>
+          <div class="card rank-card">
+            <div class="rank-table-wrap">
+              <table class="rank-table">
+                <thead>
+                  <tr>
+                    <th scope="col">名次</th>
+                    <th scope="col">地址</th>
+                    <th scope="col">积分</th>
+                  </tr>
+                </thead>
+                <tbody id="rankTableBody"></tbody>
+              </table>
+            </div>
+            <div class="rank-pager" id="rankPager" aria-label="分页"></div>
+          </div>
+        </section>
+      </div>
     </main>
 
-    <div id="floatPhotoLayer" class="float-photo-layer is-hidden" aria-hidden="true">
-      <img id="floatPhotoSpot" class="float-photo-img" alt="" decoding="async" />
-    </div>
-
     <footer class="site-footer">
-      <p>给小田滴滴 · 一直在你身边</p>
+      <div class="wrap">
+        <h3 class="section-title" style="margin-bottom: 12px">联系方式</h3>
+        <ul class="contact-list">
+          <li>
+            <span>X（Twitter）</span>
+            <a href="https://x.com/bishengkegs" target="_blank" rel="noopener">@bishengkegs</a>
+          </li>
+        </ul>
+        <p class="muted" style="margin-top: 20px">© 指南针 $ZNZ</p>
+      </div>
     </footer>
 
-    <div class="flower-modal is-hidden" id="flowerModal" role="dialog" aria-modal="true" aria-labelledby="flowerModalTitle">
-      <div class="flower-modal__backdrop" id="flowerModalBackdrop"></div>
-      <div class="flower-modal__panel">
-        <button type="button" class="flower-modal__close" id="flowerModalBack" aria-label="返回">返回</button>
-        <div class="flower-modal__step" id="flowerModalStepPick">
-          <h2 class="flower-modal__title" id="flowerModalTitle">今日鲜花</h2>
-          <div class="flower-modal__img-wrap">
-            <img class="flower-modal__img" src="images/today-flower.png" alt="今日鲜花" decoding="async" />
-          </div>
-          <p class="flower-modal__err is-hidden" id="flowerModalErr" role="alert"></p>
-          <div class="flower-modal__actions">
-            <button type="button" class="flower-btn flower-btn--like" id="flowerBtnLike"><span class="flower-btn__icon" aria-hidden="true">✓</span> 喜欢</button>
-            <button type="button" class="flower-btn flower-btn--dislike" id="flowerBtnDislike"><span class="flower-btn__icon" aria-hidden="true">✗</span> 不喜欢</button>
-          </div>
-        </div>
-        <div class="flower-modal__step is-hidden" id="flowerModalStepAlipay">
-          <h2 class="flower-modal__title">支付宝口令红包</h2>
-          <p class="flower-modal__hint">打开支付宝 → 口令红包 → 输入下方口令即可领取</p>
-          <p class="flower-modal__code" id="flowerRedCode">tzh5201314zz</p>
-          <button type="button" class="flower-btn flower-btn--ok" id="flowerBtnAlipayOk">知道了</button>
-        </div>
-      </div>
-    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-    <!-- 双曲：audio/bgm.mp3、audio/ni-yidingyao-xingfu.mp3；播完第一首自动播第二首，列表循环 -->
-    <div class="vinyl-player" id="phonographWrap">
-      <div class="vinyl-player__deck">
-        <button type="button" class="vinyl-player__disc-btn" id="phonographBtn" aria-label="点击暂停或继续播放" aria-pressed="false">
-          <span class="vinyl-player__disc" aria-hidden="true">
-            <span class="vinyl-player__disc-shine"></span>
-            <span class="vinyl-player__disc-label">♪</span>
-          </span>
-        </button>
-        <div class="vinyl-player__arm" aria-hidden="true">
-          <span class="vinyl-player__arm-pivot"></span>
-          <span class="vinyl-player__arm-rod"></span>
-          <span class="vinyl-player__arm-head"></span>
-        </div>
-      </div>
-      <div class="vinyl-player__meta">
-        <p class="vinyl-player__track" id="bgmTrackTitle">稳稳的幸福</p>
-        <button type="button" class="vinyl-player__switch" id="bgmSwitch" aria-label="切换歌曲" title="切换歌曲">⇄</button>
-      </div>
-      <div class="vinyl-player__transport">
-        <button type="button" class="vinyl-player__tbtn" id="bgmPrev" aria-label="上一首">⏮</button>
-        <button type="button" class="vinyl-player__tbtn vinyl-player__tbtn--main" id="vinylPlayCenter" aria-label="播放或暂停">▶</button>
-        <button type="button" class="vinyl-player__tbtn" id="bgmNext" aria-label="下一首">⏭</button>
-      </div>
-      <p class="vinyl-player__hint">请打开手机音量~</p>
-    </div>
-    <audio id="bgm" playsinline preload="auto"></audio>
-    </div>
-
-    <div class="letter-overlay" id="letterOverlay" role="dialog" aria-modal="true" aria-labelledby="letterTitle">
-      <div class="letter-panel">
-        <div class="letter-envelope-top"></div>
-        <button type="button" class="letter-close pixel-btn" id="letterClose" aria-label="收起告白信">收下</button>
-        <div class="letter-scroll">
-          <p class="letter-kicker" id="letterTitle">小田滴滴</p>
-          <p class="letter-to">致 田小浍宝宝</p>
-          <div class="letter-body">
-            <p>
-              田小浍宝宝，你好，当你看到这封信时，我还在（qwq)，今天是我们在一起的第608天、20个月整。日子一页一页翻过，像风吹动的书页，没有声响，却留下痕迹。等我停下来回头看，才发现我们已经一起走了很远很远，远到连平凡的每一天，都带着你的影子。难得的是初见时手捧鲜花跌跌撞撞奔向我的那个小女孩，今天还是这么可爱、活泼动人。
-            </p>
-            <p>
-              你总说，怪时间带走了我们初见时的悸动，独留下彼此之间熟悉的安稳。但是我想那应该不是时间的错，而是我习惯了你在身边时的笃定。明白是我太过沉溺于这份静好，以至于忽略了爱情本身也需要浪漫的点缀。也需要偶尔的浪漫和心动来提醒彼此的存在。其实，我一直想对你说，那种“熟悉的安稳”并不是激情的终点，而是我们共同筑起的堡垒。只是我忘了，堡垒里也需要有花开，有烛火，有偶尔响起的奏鸣曲。
-            </p>
-            <p>我不想让时间磨平我们的棱角，更不想让习惯掩盖了那些本该对你表达的爱意。</p>
-            <p>
-              如果说初见时的悸动是夏日突如其来的暴雨，那么现在的喜欢，就是冬日里静静燃烧的壁炉。它不吵闹，但只要你靠近，永远都是暖的。我开始反思，是不是我太理所当然地享受着你的陪伴，却忘了你偶尔也想回到那个被鲜花和惊喜簇拥的瞬间。
-            </p>
-            <p>所以，接下来的日子里：</p>
-            <p>
-              <strong>我会学着重新“笨拙”起来。</strong>
-              像当初那样，去观察你细微的情绪，去准备那些看似“无用”却能让你心跳加速的小惊喜。
-            </p>
-            <p>
-              <strong>我会把爱说得更大声一点。</strong>
-              不再把“你在我心里很重要”当成默认的背景音，而是要在每一个清晨和黄昏，亲口告诉你。
-            </p>
-            <p>
-              <strong>我会陪你制造更多“第一次”。</strong>
-              即使我们已经如此熟悉，世界依然很大，我想和你去没去过的地方，看没看过的风景。
-            </p>
-            <p>
-              田小浍宝宝，谢谢你一直站在我身边。二十个月的朝夕相处，没有让我觉得乏味，反而让我更加确信——平凡生活里的英雄梦想，就是和你一起岁岁年年。
-            </p>
-            <p class="letter-highlight">初见时的鲜花还没枯萎，因为我打算在往后的每一天，都为你种下新的。</p>
-            <p class="letter-sign">我们不只有过去，更有无数个值得期待的以后。</p>
-          </div>
-        </div>
-        <div class="letter-envelope-bottom"></div>
-      </div>
-    </div>
-
-    <div class="gate-overlay is-hidden" id="gateOverlay" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
-      <div class="gate-panel" id="gatePanel">
-        <p class="gate-title" id="gateTitle">访问密码</p>
-        <p class="gate-hint">信先收好～对一下暗号再进我们的小站</p>
-        <form class="gate-form" id="gateForm" autocomplete="off">
-          <label class="gate-label" for="gateInput">密码</label>
-          <input
-            class="gate-input"
-            id="gateInput"
-            type="password"
-            name="site_gate_password"
-            inputmode="text"
-            autocapitalize="off"
-            autocorrect="off"
-            spellcheck="false"
-            maxlength="64"
-          />
-          <p class="gate-error is-hidden" id="gateError" role="alert">不对哦，再试一次</p>
-          <button type="submit" class="gate-submit">进入网站</button>
-        </form>
-      </div>
-    </div>
-
-    <script src="photo-manifest.js"></script>
-    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
+    <script src="js/config.js"></script>
+    <script>
+      (function () {
+        var end = (window.ZNZ_CONFIG && window.ZNZ_CONFIG.PRESALE_END_CN) || "2026/04/30 00:00:00";
+        var a = document.getElementById("homePresaleEnd");
+        if (a) a.textContent = end;
+      })();
+    </script>
+    <script src="js/app.js"></script>
   </body>
 </html>
