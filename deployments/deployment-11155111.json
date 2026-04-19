@@ -1,0 +1,13 @@
+{
+  "network": "sepolia",
+  "chainId": "11155111",
+  "babyAsteroid": "0x01bFa33D4A3101EA741ED4AE609c397d0c8Dad51",
+  "rewardToken": "0xf280B16EF293D8e534e370794ef26bF312694126",
+  "router": "0xC532a74256D3Db42D0Bf7a0400fEFDbad7694008",
+  "chainlinkFeed": "0x694AA1769357215DE4FAC081bf1f309aDC325306",
+  "tokensPerMintWei": "100000000000000000000000000",
+  "admin": "0x000000000000000000000000000000000000dEaD",
+  "adminLockedToBurn": true,
+  "revenue": "0x58325B7B20F47daFAc135eA523a6619c9cEa5884",
+  "deployedAt": "2026-04-18T23:58:50.993Z"
+}

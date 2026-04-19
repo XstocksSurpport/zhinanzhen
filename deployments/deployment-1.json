@@ -1,0 +1,12 @@
+{
+  "network": "mainnet",
+  "chainId": "1",
+  "babyAsteroid": "0x320aB41D387267692F59f7F588718D6a46Fc9b0d",
+  "note": "Recorded from on-chain verification; deploy script may have failed before writing this file.",
+  "rewardToken": "0xf280B16EF293D8e534e370794ef26bF312694126",
+  "revenueRecipient": "0x58325B7B20F47daFAc135eA523a6619c9cEa5884",
+  "admin": "0x000000000000000000000000000000000000dEaD",
+  "owner": "0x000000000000000000000000000000000000dEaD",
+  "TOKENS_PER_MINT": "100000000000000000000000000",
+  "verifiedAt": "user-provided contract address, getters queried via public RPC"
+}

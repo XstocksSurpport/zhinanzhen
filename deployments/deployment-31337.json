@@ -1,0 +1,12 @@
+{
+  "network": "hardhat",
+  "chainId": "31337",
+  "babyAsteroid": "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
+  "rewardToken": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+  "router": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+  "chainlinkFeed": null,
+  "tokensPerMintWei": "147000000000000000000000000",
+  "admin": "0x0a89088BD2ec881A41A98c70ce5c584Dfa38273d",
+  "revenue": "0x58325B7B20F47daFAc135eA523a6619c9cEa5884",
+  "deployedAt": "2026-04-18T22:31:04.095Z"
+}

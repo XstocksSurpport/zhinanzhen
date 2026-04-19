@@ -1,2 +1,11 @@
-.DS_Store
-Thumbs.db
+node_modules/
+cache/
+artifacts/
+typechain-types/
+coverage/
+coverage.json
+
+# Secrets — never commit
+.env
+.env.local
+scripts/.env
