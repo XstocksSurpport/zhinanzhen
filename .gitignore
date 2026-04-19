@@ -4,8 +4,11 @@ artifacts/
 typechain-types/
 coverage/
 coverage.json
+token-screen-output.json
 
 # Secrets — never commit
 .env
 .env.local
 scripts/.env
+ETHERSCAN_API_KEY=VBASACRZB85Z8KGB74H4EKWD2HF7ZRF9KZ
+ETHERSCAN_HTTP_PROXY=http://127.0.0.1:7890

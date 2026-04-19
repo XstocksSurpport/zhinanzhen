@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BabyAsteroid 工具台</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>BabyAsteroid 工具台</h1>
+      <p class="sub">读取项目根目录下的 <code>scripts/.env</code>（与命令行一致）。请先配置 <code>ETHERSCAN_API_KEY</code>、<code>ETHERSCAN_HTTP_PROXY</code> 等。</p>
+    </header>
+
+    <section class="actions">
+      <button type="button" id="btn-screen">运行代币筛选</button>
+      <button type="button" id="btn-verify">运行 Etherscan 源码验证 (API)</button>
+      <button type="button" id="btn-stop" class="secondary">停止当前任务</button>
+      <button type="button" id="btn-open-json" class="secondary">打开 token-screen-output.json</button>
+      <button type="button" id="btn-open-folder" class="secondary">打开项目文件夹</button>
+    </section>
+
+    <label for="log">输出</label>
+    <textarea id="log" readonly spellcheck="false"></textarea>
+
+    <footer>
+      <span id="repo"></span>
+    </footer>
+
+    <script src="renderer.js"></script>
+  </body>
+</html>

@@ -179,6 +179,16 @@ async function main() {
     process.exit(1);
   }
   if (j.status !== "1") {
+    const msg = String(j.message || "");
+    const res = String(j.result || "");
+    const already =
+      /already verified/i.test(res) ||
+      /already verified/i.test(msg) ||
+      /contract source code already verified/i.test(res);
+    if (already) {
+      console.log("Etherscan: contract is already verified (OK).");
+      process.exit(0);
+    }
     console.error("Etherscan:", j.message, j.result);
     process.exit(1);
   }

@@ -1,0 +1,79 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: #0f1419;
+  color: #e6edf3;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 10px;
+}
+header h1 {
+  margin: 0 0 6px;
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+.sub {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #8b949e;
+  line-height: 1.45;
+}
+code {
+  background: #21262d;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.82rem;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+button {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid #388bfd;
+  background: #1f6feb;
+  color: #fff;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+button:hover {
+  filter: brightness(1.08);
+}
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+button.secondary {
+  background: #21262d;
+  border-color: #30363d;
+  color: #e6edf3;
+}
+#log {
+  flex: 1;
+  min-height: 200px;
+  resize: none;
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.4;
+  background: #010409;
+  color: #c9d1d9;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 10px;
+}
+label {
+  font-size: 0.8rem;
+  color: #8b949e;
+}
+footer {
+  font-size: 0.75rem;
+  color: #6e7681;
+  word-break: break-all;
+}
